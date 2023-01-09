@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style2.css"/>
+    <style>
+    body {
+    margin: 0;
+    }
+    .container {
+        with: 100vw;
+        height: 100vh;
+
+        font-family: 'Georgia', serif;
+        font-weight: bold;
+        font-size: 20px;
+
+        display: grid;
+        grid-template-rows:10vh 35vh 35vh 12vh;
+        grid-template-columns:300px 1.5fr 1fr;
+        padding: 10px;
+        gap: 10px;
+        background-color: #2196F3;
+    }
+    .container div {
+        border: 10px solid #000000;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+
+    .button {
+        margin : auto;
+        height : 271px;
+        width : 280px;
+
+    }
+    .listing {
+        grid-column: 1;
+        grid-row: 1 / 3;
+    }
+    .your_listings {
+        grid-column: 1;
+        grid-row: 3 / 5;
+
+    }
+    .upload_image {
+        grid-column:  2 / 3;
+        grid-row: 1 / 5;
+    }
+
+    input[type = "file"]{
+        display:none;
+    }
+
+    label{
+        color:white;
+        height: 90px;
+        width: 150px;
+        background-color: #c7c7c7;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input_name{
+        grid-column: 3 / 4;
+        grid-row: 1;
+    }
+
+    .description{
+        grid-column: 3 / 4;
+        grid-row: 2 / 4;
+    }
+    .submit{
+        grid-column: 3 / 4;
+        grid-row: 4 / 5;
+    }
+    </style>
+
+</head>
+<body>
+
+        <form method=post enctype=multipart/form-data class = "myForm" class="container">
+            <div class = "container">
+                <div class = "listing"><button class = "button">Create Listing</button></div>
+                <div class = "your_listings"><button class = "button" formaction="http://127.0.0.1:5000/seller/yourlistings/{{id}}">Your Listings</button></div>
+                <div class = "upload_image">
+                <center>Welcome back {{id}}</center>
+                <input type="file" id="file" name="file" accept="image/*">
+                <label for="file">Select image</label>
+            </div>
+            <div class = "input_name" ><input name = "product-name" type="text"></div>
+            <div class = "description">
+                <textarea name="description" rows = "20" columns = "20"></textarea>
+                <br>
+                price:
+                <select name="price" id="price">
+                    <option value="5">£5</option>
+                    <option value="10">£10</option>
+                    <option value="15">£15</option>
+                    <option value="20">£20</option>
+                </select>
+                <br>
+                category:
+                <select name="category" id="category">
+                    <option value="Productive">Productive</option>
+                    <option value="Fun">Fun</option>
+                    <option value="Prank">Prank</option>
+                    <option value="Health">Health</option>
+                    <option value="Fashion">Fashion</option>
+                </select>
+
+            </div>
+            <div class = "submit"><input type = "submit" name = "submit" id = "submit"/></div>
+            </div>
+        </form>
+
+</body>
+<script>
+function redirect() {
+  window.location.href = 'http://127.0.0.1:5000/seller/yourlistings/{{id}}';
+}
+</script>
+</html>
